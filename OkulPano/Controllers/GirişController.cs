@@ -1,11 +1,11 @@
 ﻿using OkulPano.Models.Sınıflar;
+using OkulPano.Models.ViewModels;
 using System;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.Linq;
 using System.Web.Mvc;
 using System.Web.Security;
-using OkulPano.Models.ViewModels;
 
 namespace OkulPano.Controllers
 {
@@ -15,7 +15,7 @@ namespace OkulPano.Controllers
         Context context = new Context();
         GuvenlikResmi gr = new GuvenlikResmi(5, "Arial", 25F);
         Guid Aktivasyon = Guid.NewGuid();
-        
+
 
         public ActionResult Index()
         {
@@ -52,7 +52,9 @@ namespace OkulPano.Controllers
         [HttpPost]
         public ActionResult Register(OkulViewModel ovm)
         {
+#pragma warning disable CS0252 // İstenmeden yapılmış olabilecek başvuru karşılaştırması, sol taraf için atama gerekiyor
             if (Session["GuvenlikResmi"] == ovm.Guvenlik)
+#pragma warning restore CS0252 // İstenmeden yapılmış olabilecek başvuru karşılaştırması, sol taraf için atama gerekiyor
             {
                 var Bilgiler = context.Okuls.Add(ovm.Okul);
                 Bilgiler.AktivasyonKod = Aktivasyon.ToString();
@@ -64,17 +66,22 @@ namespace OkulPano.Controllers
             }
 
 
-               
 
-          
-                return View();
+
+
+            return View();
         }
 
+        public PartialViewResult GuvenlikResmi()
+        {
+            ResimGönder();
+            return PartialView();
+        }
         public Bitmap ResimGönder()
         {
 
             Bitmap bmp = gr.GuvenlikResmiGonder();
-            if (Session["GuvenlikResmi"] ==null )
+            if (Session["GuvenlikResmi"] == null)
             {
                 Session.Add("GuvenlikResmi", gr.Sayi);
             }
@@ -84,7 +91,7 @@ namespace OkulPano.Controllers
             }
             Response.ContentType = "image/jpeg";
             bmp.Save(Response.OutputStream, ImageFormat.Jpeg);
-            
+
             return bmp;
         }
 
