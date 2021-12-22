@@ -72,7 +72,7 @@ namespace OkulPano.Controllers
             return View();
         }
 
-        public PartialViewResult GuvenlikResmi()
+        public PartialViewResult GüvenlikResmi()
         {
             ResimGönder();
             return PartialView();

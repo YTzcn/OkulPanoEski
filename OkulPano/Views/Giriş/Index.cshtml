@@ -54,9 +54,9 @@
                         @Html.TextBoxFor(x => x.Okul.MüdürAd, new { @placeholder = "Güvenlik Kodu" });
                         @Html.TextBoxFor(x => x.Okul.MüdürSoyad, new { @placeholder = "Güvenlik Kodu" });
                         @Html.TextBoxFor(x => x.Okul.Şifre, new { @placeholder = "Güvenlik Kodu" });
-                        <img src="@Url.Action("GuvenlikResmi","Giriş")" class="resim" />
+                        <img src="@Url.Action("GüvenlikResmi","Giriş")" class="resim" />
                         @Html.TextBoxFor(x => x.Guvenlik, new { @placeholder = "Güvenlik Kodu" });
-                        <a class="btn btn-success yenile">Yenile</a>
+                        <a id="yenile" class="btn btn-success yenile">Yenile</a>
                         <button name="btn" class="submit2" placeholder="Kayıt Ol">Kayıt Ol</button>
                     }
                     
@@ -71,11 +71,11 @@
 {
     <script src="~/Scripts/jquery-3.4.1.min.js"></script>
     <script>
-        $(".yenile").click(function () {
+        $("#yenile").click(function () {
             $.ajax({
 
                 type: "POST",
-                url: "@Url.Action("GuvenlikResmi","Giriş")",
+                url: "@Url.Action("GüvenlikResmi","Giriş")",
                 success: function (adres) {
                     $(".resim").attr("src", adres)
                 }
