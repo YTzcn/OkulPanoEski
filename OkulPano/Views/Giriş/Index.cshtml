@@ -75,14 +75,11 @@
             $.ajax({
 
                 type: "POST",
-                url: "@Url.Action("GuvenlikResmi","Giriş")"
-            })
-                .done(function (partialViewResult) {
-                    $(".resim").html(partialViewResult);
-            //success: function (adres) {
-            //    $(".resim").attr("src", adres)
-            
-            
+                url: "@Url.Action("GuvenlikResmi","Giriş")",
+                success: function (adres) {
+                    $(".resim").attr("src", adres)
+                }
+                })
         });
 
     </script>
