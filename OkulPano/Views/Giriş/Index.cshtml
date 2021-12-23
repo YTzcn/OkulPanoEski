@@ -54,12 +54,14 @@
                         @Html.TextBoxFor(x => x.Okul.MüdürAd, new { @placeholder = "Güvenlik Kodu" });
                         @Html.TextBoxFor(x => x.Okul.MüdürSoyad, new { @placeholder = "Güvenlik Kodu" });
                         @Html.TextBoxFor(x => x.Okul.Şifre, new { @placeholder = "Güvenlik Kodu" });
-                        <img src="@Url.Action("GüvenlikResmi","Giriş")" class="resim" />
-                        @Html.TextBoxFor(x => x.Guvenlik, new { @placeholder = "Güvenlik Kodu" });
-                        <a id="yenile" class="btn btn-success yenile">Yenile</a>
-                        <button name="btn" class="submit2" placeholder="Kayıt Ol">Kayıt Ol</button>
-                    }
+                  
+                        @Html.Partial("GuvenlikResmi")
                     
+                        @Html.TextBoxFor(x => x.Guvenlik, new { @placeholder = "Güvenlik Kodu" });
+                        <button id="yenile" type="button" class="btn btn-success yenile">Yenile</button>
+                        <button name="btn" type="submit" class="submit2" placeholder="Kayıt Ol">Kayıt Ol</button>
+                    }
+
                 </div>
             </div>
         </div>
@@ -67,23 +69,23 @@
 </body>
 </html>
 
-@section scripts
-{
+
     <script src="~/Scripts/jquery-3.4.1.min.js"></script>
     <script>
-        $("#yenile").click(function () {
+        $(".yenile").click(function () {
+
             $.ajax({
 
                 type: "POST",
-                url: "@Url.Action("GüvenlikResmi","Giriş")",
+                url: "@Url.Action("ResimGönder", "Giriş")",
                 success: function (adres) {
-                    $(".resim").attr("src", adres)
+                    $('.veriTablısu').load("Giriş/GuvenlikResmi"); 
                 }
                 })
         });
 
     </script>
-}
+
 
 
 
