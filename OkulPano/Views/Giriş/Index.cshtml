@@ -54,14 +54,16 @@
                         @Html.TextBoxFor(x => x.Okul.MüdürAd, new { @placeholder = "Güvenlik Kodu" });
                         @Html.TextBoxFor(x => x.Okul.MüdürSoyad, new { @placeholder = "Güvenlik Kodu" });
                         @Html.TextBoxFor(x => x.Okul.Şifre, new { @placeholder = "Güvenlik Kodu" });
-                  
-                        @Html.Partial("GuvenlikResmi")
-                    
+                <div id="partialDiv">
+                    @Html.Partial("GuvenlikResmi")
+                </div>
                         @Html.TextBoxFor(x => x.Guvenlik, new { @placeholder = "Güvenlik Kodu" });
                         <button id="yenile" type="button" class="btn btn-success yenile">Yenile</button>
                         <button name="btn" type="submit" class="submit2" placeholder="Kayıt Ol">Kayıt Ol</button>
                     }
 
+
+                
                 </div>
             </div>
         </div>
@@ -70,21 +72,24 @@
 </html>
 
 
-    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
-    <script>
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script>
         $(".yenile").click(function () {
-
             $.ajax({
 
                 type: "POST",
-                url: "@Url.Action("ResimGönder", "Giriş")",
+                url: "@Url.Action("GuvenlikResmi", "Giriş")",
                 success: function (adres) {
-                    $('.veriTablısu').load("Giriş/GuvenlikResmi"); 
+
+                    document.getElementById("resim").src = '@Html.Partial("GuvenlikResmi")';
+                    //$("partialDiv").html("");
+                    //$("partialDiv").load("GuvenlikResmi");
+
                 }
-                })
+            });
         });
 
-    </script>
+</script>
 
 
 

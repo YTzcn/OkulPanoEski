@@ -13,7 +13,7 @@ namespace OkulPano.Controllers
     {
         // GET: Giriş
         Context context = new Context();
-        GuvenlikResmi gr = new GuvenlikResmi(5, "Arial", 25F);
+
         Guid Aktivasyon = Guid.NewGuid();
 
 
@@ -77,9 +77,10 @@ namespace OkulPano.Controllers
             ResimGönder();
             return PartialView();
         }
+        
         public Bitmap ResimGönder()
         {
-
+            GuvenlikResmi gr = new GuvenlikResmi(5, "Arial", 25F);
             Bitmap bmp = gr.GuvenlikResmiGonder();
             if (Session["GuvenlikResmi"] == null)
             {
