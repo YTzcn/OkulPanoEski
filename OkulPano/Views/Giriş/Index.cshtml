@@ -54,11 +54,14 @@
                         @Html.TextBoxFor(x => x.Okul.MüdürAd, new { @placeholder = "Güvenlik Kodu" });
                         @Html.TextBoxFor(x => x.Okul.MüdürSoyad, new { @placeholder = "Güvenlik Kodu" });
                         @Html.TextBoxFor(x => x.Okul.Şifre, new { @placeholder = "Güvenlik Kodu" });
-                <div id="partialDiv">
-                    @Html.Partial("GuvenlikResmi")
-                </div>
+                        <div id="partialDiv">
+                            <div id="partialAnaDiv" style="max-height:100px;max-width:100px;">
+                                @Html.Partial("GuvenlikResmi", new { @id = "sa" })
+                                <button id="yenile" type="button" class="btn btn-success yenile">Yenile</button>
+                            </div>
+                        </div>
                         @Html.TextBoxFor(x => x.Guvenlik, new { @placeholder = "Güvenlik Kodu" });
-                        <button id="yenile" type="button" class="btn btn-success yenile">Yenile</button>
+                        
                         <button name="btn" type="submit" class="submit2" placeholder="Kayıt Ol">Kayıt Ol</button>
                     }
 
@@ -80,10 +83,8 @@
                 type: "POST",
                 url: "@Url.Action("GuvenlikResmi", "Giriş")",
                 success: function (adres) {
-                    $("#partialDiv").html(adres);
-                    // document.getElementById("resim").src = '")';
-                    //$("partialDiv").html("");
-                    //$("partialDiv").load("~/Giriş/ResimGönder");
+                    $("#partialAnaDiv").html(adres);
+                  
 
                 }
             });

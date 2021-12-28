@@ -92,6 +92,7 @@ namespace OkulPano.Controllers
             }
             Response.ContentType = "image/jpeg";
             bmp.Save(Response.OutputStream, ImageFormat.Jpeg);
+            
 
             return bmp;
         }
