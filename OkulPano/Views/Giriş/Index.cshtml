@@ -80,10 +80,10 @@
                 type: "POST",
                 url: "@Url.Action("GuvenlikResmi", "Giriş")",
                 success: function (adres) {
-
-                    document.getElementById("resim").src = '@Html.Partial("GuvenlikResmi")';
+                    $("#partialDiv").html(adres);
+                    // document.getElementById("resim").src = '")';
                     //$("partialDiv").html("");
-                    //$("partialDiv").load("GuvenlikResmi");
+                    //$("partialDiv").load("~/Giriş/ResimGönder");
 
                 }
             });
