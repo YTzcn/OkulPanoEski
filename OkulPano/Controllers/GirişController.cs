@@ -52,24 +52,18 @@ namespace OkulPano.Controllers
         [HttpPost]
         public ActionResult Register(OkulViewModel ovm)
         {
-#pragma warning disable CS0252 // İstenmeden yapılmış olabilecek başvuru karşılaştırması, sol taraf için atama gerekiyor
-            if (Session["GuvenlikResmi"] == ovm.Guvenlik)
-#pragma warning restore CS0252 // İstenmeden yapılmış olabilecek başvuru karşılaştırması, sol taraf için atama gerekiyor
+            string KoddanGelen = Session["GuvenlikResmi"].ToString();
+            if (ovm.Guvenlik == KoddanGelen)
             {
                 var Bilgiler = context.Okuls.Add(ovm.Okul);
                 Bilgiler.AktivasyonKod = Aktivasyon.ToString();
                 context.SaveChanges();
+                return RedirectToAction("Index");
             }
             else
             {
-                return RedirectToAction("sfsdf");
+                return RedirectToAction("şlkgjdşlasd");
             }
-
-
-
-
-
-            return View();
         }
 
         public PartialViewResult GuvenlikResmi()
@@ -77,7 +71,7 @@ namespace OkulPano.Controllers
             ResimGönder();
             return PartialView();
         }
-        
+
         public Bitmap ResimGönder()
         {
             GuvenlikResmi gr = new GuvenlikResmi(5, "Arial", 25F);
@@ -92,7 +86,7 @@ namespace OkulPano.Controllers
             }
             Response.ContentType = "image/jpeg";
             bmp.Save(Response.OutputStream, ImageFormat.Jpeg);
-            
+
 
             return bmp;
         }
