@@ -47,7 +47,7 @@
                     @using (Html.BeginForm("Register", "Giriş", FormMethod.Post))
                     {
                         <h5>Kayıt</h5>
-                        @Html.TextBoxFor(x => x.Okul.Ad, new { @placeholder = "Selam" });
+                        @Html.TextBoxFor(x => x.Okul.Ad, new {@id="OkulAd" ,@placeholder = "Selam" });
                         @Html.TextBoxFor(x => x.Okul.Mail, new { @placeholder = "Güvenlik Kodu" });
                         @Html.TextBoxFor(x => x.Okul.Adres, new { @placeholder = "Güvenlik Kodu" });
                         @Html.TextBoxFor(x => x.Okul.Web, new { @placeholder = "Güvenlik Kodu" });
@@ -77,17 +77,22 @@
 
 <script src="~/Scripts/jquery-3.4.1.min.js"></script>
 <script>
-        $(".yenile").click(function () {
+    $(".yenile").click(function () {
+
+        var ad = document.getElementById("OkulAd");
+        
             $.ajax({
 
                 type: "POST",
                 url: "@Url.Action("GuvenlikResmi", "Giriş")",
                 success: function (adres) {
-                    $("#partialAnaDiv").html(adres);
-                  
+                    
+                    window.location.reload()
 
                 }
             });
+
+        document.getElementById("OkulAd").value = ad;
         });
 
 </script>
