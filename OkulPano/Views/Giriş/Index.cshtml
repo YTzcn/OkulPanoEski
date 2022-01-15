@@ -4,7 +4,7 @@
 }
 
 <!DOCTYPE html>
-
+@using OkulPano.Models.ViewModels
 @model OkulPano.Models.ViewModels.OkulViewModel
 
 <html lang="en">
@@ -54,14 +54,9 @@
                         @Html.TextBoxFor(x => x.Okul.MüdürAd, new { @placeholder = "Güvenlik Kodu" });
                         @Html.TextBoxFor(x => x.Okul.MüdürSoyad, new { @placeholder = "Güvenlik Kodu" });
                         @Html.TextBoxFor(x => x.Okul.Şifre, new { @placeholder = "Güvenlik Kodu" });
-                        <div id="partialDiv">
-                            <div id="partialAnaDiv" style="max-height:100px;max-width:100px;">
-                                @Html.Partial("GuvenlikResmi", new { @id = "sa" })
-                                <button id="yenile" type="button" class="btn btn-success yenile">Yenile</button>
-                            </div>
-                        </div>
+                        <img style="float:left;" id="myImg" src="@Url.Action("ResimGonder","Giriş")" />
+                        <button style="float:left;" id="yenile" type="button" onclick="myFunction()" class="btn btn-success yenile">Yenile</button>                
                         @Html.TextBoxFor(x => x.Guvenlik, new { @placeholder = "Güvenlik Kodu" });
-                        
                         <button name="btn" type="submit" class="submit2" placeholder="Kayıt Ol">Kayıt Ol</button>
                     }
 
@@ -77,16 +72,12 @@
 
 <script src="~/Scripts/jquery-3.4.1.min.js"></script>
 <script>
-    $(".yenile").click(function () {
-            $.ajax({
-               type: "POST",
-               url: "@Url.Action("GuvenlikResmi", "Giriş")",
-                success: function (adres) {
 
-                   $("#partialAnaDiv").html(adres);
-                }
-           });   
-        });
+    function myFunction() {
+        document.getElementById("myImg").src ="@Url.Action("ResimGonder", "Giriş")";
+    }
+
+
 
 </script>
 

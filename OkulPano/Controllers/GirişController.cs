@@ -66,13 +66,7 @@ namespace OkulPano.Controllers
             }
         }
 
-        public PartialViewResult GuvenlikResmi()
-        {
-            ResimGönder();
-            return PartialView();
-        }
-
-        public Bitmap ResimGönder()
+        public Bitmap ResimGonder()
         {
             GuvenlikResmi gr = new GuvenlikResmi(5, "Arial", 25F);
             Bitmap bmp = gr.GuvenlikResmiGonder();
