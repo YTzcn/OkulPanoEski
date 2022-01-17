@@ -19,7 +19,11 @@ namespace OkulPano.Models.Sınıflar
         public string  Şifre { get; set; }
         public string  KayarYazı { get; set; }
         public string  AktivasyonKod { get; set; }
-        //boolean aktiflik durumu yapılacak
+        public bool Aktif { get; set; }
+
+        public ICollection<NöbertYer> NöbertYers{ get; set; }
+        public ICollection<Öğretmen> Öğretmens{ get; set; }
+        public ICollection<Resim> Resims { get; set; }
 
     }
 }

@@ -1603,6 +1603,7 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Giriş\Index.cshtml" />
+    <Content Include="Views\_ÜyeAdminLayout.cshtml" />
     <Content Include="Views\ÜyeAdmin\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>

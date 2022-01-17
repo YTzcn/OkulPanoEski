@@ -35,7 +35,7 @@ namespace OkulPano.Controllers
             {
                 FormsAuthentication.SetAuthCookie(Bilgiler.Mail, false);
                 Session["Mail"] = Bilgiler.Mail.ToString();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index","ÜyeAdmin");
             }
             else
                 return View();
