@@ -20,6 +20,7 @@ namespace OkulPano.Models.Sınıflar
         public string  KayarYazı { get; set; }
         public string  AktivasyonKod { get; set; }
         public bool Aktif { get; set; }
+        public DateTime KayıtTarihi { get; set; }
 
         public ICollection<NöbertYer> NöbertYers{ get; set; }
         public ICollection<Öğretmen> Öğretmens{ get; set; }

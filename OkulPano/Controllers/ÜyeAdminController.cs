@@ -12,7 +12,9 @@ namespace OkulPano.Controllers
         {
             string KullanıcıMail = Session["Mail"].ToString();
             var Kullanıcı = context.Okuls.FirstOrDefault(x => x.Mail == KullanıcıMail);
-            ViewBag.Deneme = Kullanıcı.Ad;
+            ViewBag.OkulAd= Kullanıcı.Ad;
+
+            
             return View();
         }
     }

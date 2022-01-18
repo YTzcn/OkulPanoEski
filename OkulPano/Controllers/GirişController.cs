@@ -30,15 +30,25 @@ namespace OkulPano.Controllers
         [HttpPost]
         public ActionResult Login(Okul okul)
         {
-            var Bilgiler = context.Okuls.FirstOrDefault(x => x.Mail == okul.Mail && x.Şifre == okul.Şifre);
+            var Bilgiler = context.Okuls.FirstOrDefault(x => x.Mail == okul.Mail && x.Şifre == okul.Şifre); 
+            TempData["GirişHata"] = "Kullanıcı Adı Veya Şifre Hatalı!";
             if (Bilgiler != null)
             {
+                if (Bilgiler.Aktif == true)
+                {
                 FormsAuthentication.SetAuthCookie(Bilgiler.Mail, false);
                 Session["Mail"] = Bilgiler.Mail.ToString();
-                return RedirectToAction("Index","ÜyeAdmin");
+                return RedirectToAction("Index", "ÜyeAdmin");
+                }
+                else
+                {
+                    return RedirectToAction("Index");
+                }
+                
             }
             else
-                return View();
+               
+                return RedirectToAction("Index");
 
         }
         [HttpGet]
@@ -57,12 +67,14 @@ namespace OkulPano.Controllers
             {
                 var Bilgiler = context.Okuls.Add(ovm.Okul);
                 Bilgiler.AktivasyonKod = Aktivasyon.ToString();
+                Bilgiler.KayıtTarihi = DateTime.Today;
                 context.SaveChanges();
                 return RedirectToAction("Index");
             }
             else
             {
-                return RedirectToAction("şlkgjdşlasd");
+                TempData["GüvenlikKoduHata"] = "Güvenlik Kodu Yanlış!";
+                return RedirectToAction("Index");
             }
         }
 
