@@ -4,6 +4,7 @@ using System;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.Linq;
+using System.Net.Mail;
 using System.Web.Mvc;
 using System.Web.Security;
 
@@ -65,10 +66,25 @@ namespace OkulPano.Controllers
             string KoddanGelen = Session["GuvenlikResmi"].ToString();
             if (ovm.Guvenlik == KoddanGelen)
             {
+                
                 var Bilgiler = context.Okuls.Add(ovm.Okul);
                 Bilgiler.AktivasyonKod = Aktivasyon.ToString();
                 Bilgiler.KayıtTarihi = DateTime.Today;
                 context.SaveChanges();
+
+                string mail = ovm.Okul.Mail;
+                MailMessage mesajım = new MailMessage();//mesaj oluşturma
+                SmtpClient istemci = new SmtpClient();//istemci oluştuırma
+                istemci.Credentials = new System.Net.NetworkCredential("uygulamachatapp@gmail.com", "yahya2005");//gönderen mail adresi şifresi
+                istemci.Port = 587;//istemci portu
+                istemci.Host = "smtp.gmail.com";//istemci adresi
+                istemci.EnableSsl = true;//ssl etkinleştime 
+                mesajım.To.Add(mail);//kullanıcı mail adresi
+                mesajım.From = new MailAddress("uygulamachatapp@gmail.com");//gönderen mail adresi
+                mesajım.Subject = "a";//başlık 
+                mesajım.Body = "https://localhost:44382/Giriş/HesapOnay?kod=" + Aktivasyon;//ana konu
+                istemci.Send(mesajım);//mail gönderme komutu 
+
                 return RedirectToAction("Index");
             }
             else
@@ -77,6 +93,16 @@ namespace OkulPano.Controllers
                 return RedirectToAction("Index");
             }
         }
+   
+        public ActionResult HesapOnay(string kod) 
+        {
+            var aktif = context.Okuls.FirstOrDefault(x => x.AktivasyonKod == kod);
+            aktif.Aktif = true;
+            context.SaveChanges();
+
+            return RedirectToAction("Index");
+        }
+
 
         public Bitmap ResimGonder()
         {

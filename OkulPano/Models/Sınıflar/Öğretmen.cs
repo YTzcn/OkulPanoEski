@@ -14,6 +14,5 @@ namespace OkulPano.Models.Sınıflar
         public int Soyad { get; set; }
         public string NöbetGün { get; set; }
         public string NöbetYer { get; set; }
-        //OKUL ID TABLO BAĞLANTISI YAPILACAK 
     }
 }

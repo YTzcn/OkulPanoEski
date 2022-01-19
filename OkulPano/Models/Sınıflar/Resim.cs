@@ -10,6 +10,6 @@ namespace OkulPano.Models.Sınıflar
     {
         [Key]
         public int ResimId { get; set; }
-        //okul ıd tablo bağlantısı yapılacak
+    
     }
 }

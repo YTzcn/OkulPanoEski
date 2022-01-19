@@ -13,7 +13,7 @@ namespace OkulPano.Models.Sınıflar
         public string Ad { get; set; }
         public string Kat { get; set; }
 
-        //okul ıd tablo bağlantısı 
+    
         
     }
 }

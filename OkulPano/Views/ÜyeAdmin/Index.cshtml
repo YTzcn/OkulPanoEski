@@ -3,10 +3,81 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/_ÜyeAdminLayout.cshtml";
 }
-
+@using OkulPano.Models.Sınıflar
+@model OkulPano.Models.Sınıflar.Okul
 <div class="panel panel-headline">
-<div class="panel-heading">
-    <h3 class="panel-title">@ViewBag.OkulAd</h3>
-    <p class="panel-subtitle">Üyelik Bilgileri</p>
+    <div class="panel-heading">
+        <h3 class="panel-title">@ViewBag.OkulAd</h3>
+        <p class="panel-subtitle">Üyelik Bilgileri</p>
+        <p class="panel-subtitle">Kayıt Tarihi : @ViewBag.Üyelik</p>
+        <p class="panel-subtitle">Adres : @ViewBag.Adres</p>
+    </div>
 </div>
+<div class="row">
+    <div class="col-md-4">
+        <div class="panel">
+            <div class="panel-heading">
+                <h3 class="panel-title">Diğer Ayarlar</h3>
+            </div>
+            <div class="panel-body">
+                @using (Html.BeginForm("BilgiGuncelle", "ÜyeAdmin", FormMethod.Post))
+                {
+                    <p>@Html.HiddenFor(x => x.OkulId)</p>
+                    @Html.LabelFor(x => x.Ad)
+                    @Html.TextBoxFor(x => x.Ad, new { @class = "form-control" })
+                    @Html.LabelFor(x => x.Adres)
+                    @Html.TextBoxFor(x => x.Adres, new { @class = "form-control" })
+                    @Html.LabelFor(x => x.Web)
+                    @Html.TextBoxFor(x => x.Web, new { @class = "form-control" })
+                    @Html.LabelFor(x => x.MüdürAd)
+                    @Html.TextBoxFor(x => x.MüdürAd, new { @class = "form-control" })
+                    @Html.LabelFor(x => x.MüdürSoyad)
+                    @Html.TextBoxFor(x => x.MüdürSoyad, new { @class = "form-control" })
+                    <button class="btn btn-success">Kaydet</button>
+                    @TempData["Guncelle"]
+                }
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="panel">
+            <div class="panel-heading">
+                <h3 class="panel-title">Şifre İşlemleri</h3>
+            </div>
+            <div class="panel-body">
+                <p>Şifre Güncelleme Paneli</p>
+                @using (Html.BeginForm("SifreGuncelle", "ÜyeAdmin", FormMethod.Post))
+                {
+                    <input name="EskiS" class="form-control" placeholder="Eski Şifre" type="password"><br>
+                    <input name="YeniS" class="form-control" placeholder="Yeni Şifre" type="password"><br>
+                    <button class="btn btn-success">Güncelle</button>
+                    @TempData["Hatalı"]
+                }
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="panel">
+            <div class="panel-heading">
+                <h3 class="panel-title">Ana Sayfa İçin Kayar Yazı Belirleyin</h3>
+            </div>
+            <div class="panel-body">
+                <p>Panelinizin alt kısmında kayarak geçecek metni belirleyin. <br>Kullanımdaki Metin : @ViewBag.KayanYazı</p>
+                @Html.TextBoxFor(x => x.KayarYazı, new { @placeholder = "Metin Giriniz", @class = "form-control" })
+            </div>
+        </div>
+    </div>
 </div>
+
+    <div class="panel">
+        <div class="panel-heading">
+            <h3 class="panel-title">Kayar Resim Yükleme Alanı</h3>
+        </div>
+        <div class="panel-body">
+            <p>Panelinizin orta kısmında kayarak geçecek resimleri belirleyin.</p>
+            @Html.TextBoxFor(x => x.KayarYazı, new { @placeholder = "Metin Giriniz", @class = "form-control" })
+        </div>
+    </div>
+
+
