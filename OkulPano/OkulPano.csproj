@@ -1605,10 +1605,11 @@
     <Content Include="Views\Giriş\Index.cshtml" />
     <Content Include="Views\_ÜyeAdminLayout.cshtml" />
     <Content Include="Views\ÜyeAdmin\Index.cshtml" />
+    <Content Include="Views\Giriş\HesapOnay.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Resimler\" />
+    <Folder Include="Resimler\2\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

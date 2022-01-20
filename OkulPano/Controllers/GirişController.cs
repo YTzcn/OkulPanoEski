@@ -3,6 +3,7 @@ using OkulPano.Models.ViewModels;
 using System;
 using System.Drawing;
 using System.Drawing.Imaging;
+using System.IO;
 using System.Linq;
 using System.Net.Mail;
 using System.Web.Mvc;
@@ -67,6 +68,7 @@ namespace OkulPano.Controllers
             if (ovm.Guvenlik == KoddanGelen)
             {
                 
+                
                 var Bilgiler = context.Okuls.Add(ovm.Okul);
                 Bilgiler.AktivasyonKod = Aktivasyon.ToString();
                 Bilgiler.KayıtTarihi = DateTime.Today;
@@ -84,6 +86,7 @@ namespace OkulPano.Controllers
                 mesajım.Subject = "a";//başlık 
                 mesajım.Body = "https://localhost:44382/Giriş/HesapOnay?kod=" + Aktivasyon;//ana konu
                 istemci.Send(mesajım);//mail gönderme komutu 
+                TempData["GuvenlikKoduHata"] = "Mail adresinize gelen linkten hesabınızı aktif ettikten sonra giriş yapabilirsiniz";
 
                 return RedirectToAction("Index");
             }
@@ -97,10 +100,15 @@ namespace OkulPano.Controllers
         public ActionResult HesapOnay(string kod) 
         {
             var aktif = context.Okuls.FirstOrDefault(x => x.AktivasyonKod == kod);
+            if (aktif == null)
+            {
+
+            }
             aktif.Aktif = true;
             context.SaveChanges();
+            Directory.CreateDirectory(Server.MapPath("~/Resimler/" + aktif.OkulId));
 
-            return RedirectToAction("Index");
+            return View();
         }
 
 

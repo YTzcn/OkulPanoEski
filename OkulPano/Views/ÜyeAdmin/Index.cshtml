@@ -4,6 +4,7 @@
     Layout = "~/Views/_ÜyeAdminLayout.cshtml";
 }
 @using OkulPano.Models.Sınıflar
+@using OkulPano.Models.ViewModels
 @model OkulPano.Models.Sınıflar.Okul
 <div class="panel panel-headline">
     <div class="panel-heading">
@@ -76,7 +77,12 @@
         </div>
         <div class="panel-body">
             <p>Panelinizin orta kısmında kayarak geçecek resimleri belirleyin.</p>
-            @Html.TextBoxFor(x => x.KayarYazı, new { @placeholder = "Metin Giriniz", @class = "form-control" })
+           @using (Html.BeginForm("ResimEkle", "ÜyeAdmin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+           {
+               <input type="file" name="Resim"><br>
+               <button type="submit" class="btn btn-success">Kaydet</button>
+
+           }
         </div>
     </div>
 
