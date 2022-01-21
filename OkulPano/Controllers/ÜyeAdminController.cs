@@ -1,5 +1,4 @@
 ﻿using OkulPano.Models.Sınıflar;
-using OkulPano.Models.ViewModels;
 using System.IO;
 using System.Linq;
 using System.Web.Mvc;
@@ -21,7 +20,7 @@ namespace OkulPano.Controllers
             ViewBag.KayanYazı = Kullanıcı.KayarYazı;
 
             var VerileriÇek = context.Okuls.Find(Kullanıcı.OkulId);
-            
+
 
             return View("Index", VerileriÇek);
         }
@@ -53,50 +52,63 @@ namespace OkulPano.Controllers
             return RedirectToAction("Index");
         }
         [HttpGet]
-        public ActionResult BilgiGuncelle() 
+        public ActionResult BilgiGuncelle()
         {
 
             return RedirectToAction("Index");
         }
         [HttpPost]
-        public ActionResult BilgiGuncelle(OkulViewModel okul)
+        public ActionResult BilgiGuncelle(Okul okul)
         {
             try
             {
-            var Değişecek= context.Okuls.Find(okul.Okul.OkulId);
-            Değişecek.Ad = okul.Okul.Ad;
-            Değişecek.Adres = okul.Okul.Adres;
-            Değişecek.Web = okul.Okul.Web;
-            Değişecek.MüdürAd = okul.Okul.MüdürAd;
-            Değişecek.MüdürSoyad = okul.Okul.MüdürSoyad;
-            context.SaveChanges();
+                var Değişecek = context.Okuls.Find(okul.OkulId);
+                Değişecek.Ad = okul.Ad;
+                Değişecek.Adres = okul.Adres;
+                Değişecek.Web = okul.Web;
+                Değişecek.MüdürAd = okul.MüdürAd;
+                Değişecek.MüdürSoyad = okul.MüdürSoyad;
+                context.SaveChanges();
                 TempData["Guncelle"] = "Güncelleme İşlemi Başarılı";
             }
-            catch 
+            catch
             {
-                TempData["Guncelle"] = "İşlem Başarısız";   
+                TempData["Guncelle"] = "İşlem Başarısız";
                 throw;
             }
-          
-            
+
+
             return RedirectToAction("Index");
         }
+        [HttpPost]
+        public ActionResult KayarYaziGuncelle(Okul p)
+        {
+            string KullanıcıMail = Session["Mail"].ToString();
+            var Kullanıcı = context.Okuls.FirstOrDefault(x => x.Mail == KullanıcıMail);
+            Kullanıcı.KayarYazı = p.KayarYazı;
+
+            context.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
         [HttpGet]
-        public ActionResult ResimEkle() 
+        public ActionResult ResimEkle()
         {
             return View();
         }
         [HttpPost]
         public ActionResult ResimEkle(Resim R)
         {
+            
             string KullanıcıMail = Session["Mail"].ToString();
             var Kullanıcı = context.Okuls.FirstOrDefault(x => x.Mail == KullanıcıMail);
-            if (Request.Files.Count >0)
+            if (Request.Files.Count > 0)
             {
                 string DosyaAdı = Path.GetFileName(Request.Files[0].FileName);
-                string yol= "/Resimler/"+Kullanıcı.OkulId+"/"+DosyaAdı;
+                string yol = "~/Resimler/" + Kullanıcı.OkulId + "/" + DosyaAdı;
                 Request.Files[0].SaveAs(Server.MapPath(yol));
-                 R.ResimYol = yol.ToString();
+                 R.OkulId = Kullanıcı.OkulId;
+                R.ResimYol = yol.ToString();
             }
             context.Resims.Add(R);
             context.SaveChanges();
@@ -104,7 +116,25 @@ namespace OkulPano.Controllers
             return RedirectToAction("Index");
         }
 
+        public ActionResult ProfilResmiYükle(Resim R)
+        {
+            string KullanıcıMail = Session["Mail"].ToString();
+            var Kullanıcı = context.Okuls.FirstOrDefault(x => x.Mail == KullanıcıMail);
+            if (Request.Files.Count > 0)
+            {
+                string DosyaAdı = Path.GetFileName(Request.Files[0].FileName);
 
+                string yol = "~/Resimler/Profil/"+ DosyaAdı;
+                R.OkulId = Kullanıcı.OkulId;
+                Request.Files[0].SaveAs(Server.MapPath(yol));
+                R.ResimYol = yol.ToString();
+            }
+            context.Resims.Add(R);
+            context.SaveChanges();
+
+            return RedirectToAction("Index");
+
+        }
 
 
     }

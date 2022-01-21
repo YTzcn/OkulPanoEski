@@ -100,10 +100,7 @@ namespace OkulPano.Controllers
         public ActionResult HesapOnay(string kod) 
         {
             var aktif = context.Okuls.FirstOrDefault(x => x.AktivasyonKod == kod);
-            if (aktif == null)
-            {
-
-            }
+           
             aktif.Aktif = true;
             context.SaveChanges();
             Directory.CreateDirectory(Server.MapPath("~/Resimler/" + aktif.OkulId));

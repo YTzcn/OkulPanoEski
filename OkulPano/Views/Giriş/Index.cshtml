@@ -48,30 +48,25 @@
                     @using (Html.BeginForm("Register", "Giriş", FormMethod.Post))
                     {
                         <h5>Kayıt</h5>
-                        @Html.TextBoxFor(x => x.Okul.Ad, new {@id="OkulAd" ,@placeholder = "Okul Adı", required = "required" });
-                        @Html.TextBoxFor(x => x.Okul.Adres, new {@placeholder = "Okul Adresi", required = "required" });
-                        @Html.TextBoxFor(x => x.Okul.Mail, new { @placeholder = "Okul E Mail Adresi", type = "email", required = "required"});
+                        @Html.TextBoxFor(x => x.Okul.Ad, new { @id = "OkulAd", @placeholder = "Okul Adı", required = "required" });
+                        @Html.TextBoxFor(x => x.Okul.Adres, new { @placeholder = "Okul Adresi", required = "required" });
+                        @Html.TextBoxFor(x => x.Okul.Mail, new { @placeholder = "Okul E Mail Adresi", type = "email", required = "required" });
                         @Html.TextBoxFor(x => x.Okul.Web, new { @placeholder = "Okul Website", required = "required" });
                         @Html.TextBoxFor(x => x.Okul.MüdürAd, new { @placeholder = "Müdür Ad", required = "required" });
                         @Html.TextBoxFor(x => x.Okul.MüdürSoyad, new { @placeholder = "Müdür Soyad", required = "required" });
-                        @Html.TextBoxFor(x => x.Okul.Şifre, new { @placeholder = "Şifre" , type = "password", required = "required" });
-                        <img style="float:left;" id="myImg" src="@Url.Action("ResimGonder","Giriş")" />
+                        @Html.TextBoxFor(x => x.Okul.Şifre, new { @placeholder = "Şifre", type = "password", required = "required" });
+                        <img style="float:left;" id="myImg" src="@Url.Action("ResimGonder", "Giriş")" />
                         <button style="float:left;" id="yenile" type="button" onclick="myFunction()" class="btn btn-success yenile">Yenile</button>                
                         @Html.TextBoxFor(x => x.Guvenlik, new { @placeholder = "Güvenlik Kodu", required = "required" });
                         <button name="btn" type="submit" class="submit2" placeholder="Kayıt Ol">Kayıt Ol</button>
                         <h6 style="color:orangered;">@TempData["GüvenlikKoduHata"]</h6>
                     }
-
-
-                
                 </div>
             </div>
         </div>
     </section>
 </body>
 </html>
-
-    
 <script src="~/Scripts/jquery-3.4.1.min.js"></script>
 <script>
 

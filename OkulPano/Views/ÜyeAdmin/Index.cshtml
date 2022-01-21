@@ -64,26 +64,54 @@
                 <h3 class="panel-title">Ana Sayfa İçin Kayar Yazı Belirleyin</h3>
             </div>
             <div class="panel-body">
-                <p>Panelinizin alt kısmında kayarak geçecek metni belirleyin. <br>Kullanımdaki Metin : @ViewBag.KayanYazı</p>
-                @Html.TextBoxFor(x => x.KayarYazı, new { @placeholder = "Metin Giriniz", @class = "form-control" })
+                @using (Html.BeginForm("KayarYaziGuncelle", "ÜyeAdmin", FormMethod.Post))
+                {
+                    <p>Panelinizin alt kısmında kayarak geçecek metni belirleyin. <br>Kullanımdaki Metin : @ViewBag.KayanYazı</p>
+                    @Html.TextBoxFor(x => x.KayarYazı, new { @placeholder = "Metin Giriniz", @class = "form-control" })
+                    <button type="submit" class="btn btn-success">Kaydet</button>
+                }
             </div>
         </div>
     </div>
 </div>
 
-    <div class="panel">
-        <div class="panel-heading">
-            <h3 class="panel-title">Kayar Resim Yükleme Alanı</h3>
-        </div>
-        <div class="panel-body">
-            <p>Panelinizin orta kısmında kayarak geçecek resimleri belirleyin.</p>
-           @using (Html.BeginForm("ResimEkle", "ÜyeAdmin", FormMethod.Post, new { enctype = "multipart/form-data" }))
-           {
-               <input type="file" name="Resim"><br>
-               <button type="submit" class="btn btn-success">Kaydet</button>
+<div class="row">
 
-           }
+    <div class="col-md-4">
+        <div class="panel">
+            <div class="panel-heading">
+                <h3 class="panel-title">Kayar Resim Yükleme Alanı</h3>
+            </div>
+            <div class="panel-body">
+                <p>Panelinizin orta kısmında kayarak geçecek resimleri belirleyin.</p>
+                @using (Html.BeginForm("ResimEkle", "ÜyeAdmin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+                    <input type="file" name="Resim"><br>
+                    <button type="submit" class="btn btn-success">Kaydet</button>
+
+                }
+            </div>
         </div>
     </div>
+    <div class="col-md-4">
+        <div class="panel">
+            <div class="panel-heading">
+                <h3 class="panel-title">Profil Resmi Yükleme</h3>
+            </div>
+            <div class="panel-body">
+                <p>Panelinizin Sol Üst kısmında bulunacak olan okulunuz logosunu yükleyinzi.</p>
+                @using (Html.BeginForm("ProfilResmiYükle", "ÜyeAdmin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+                    <input type="file" name="Profil Resmi"><br>
+                    <button type="submit" class="btn btn-success">Kaydet</button>
+
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
 
 

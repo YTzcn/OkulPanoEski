@@ -12,8 +12,9 @@ namespace OkulPano.Models.Sınıflar
         public int Id { get; set; }
         public string Ad { get; set; }
         public string Kat { get; set; }
+        public int OkulId { get; set; }
 
-    
-        
+
+
     }
 }

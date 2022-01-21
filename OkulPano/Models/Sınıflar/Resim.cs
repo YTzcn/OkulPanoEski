@@ -11,6 +11,7 @@ namespace OkulPano.Models.Sınıflar
         [Key]
         public int ResimId { get; set; }
         public string ResimYol { get; set; }
-    
+        public int OkulId { get; set; }
+
     }
 }
