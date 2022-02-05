@@ -99,7 +99,7 @@ namespace OkulPano.Controllers
         [HttpPost]
         public ActionResult ResimEkle(Resim R)
         {
-            
+
             string KullanıcıMail = Session["Mail"].ToString();
             var Kullanıcı = context.Okuls.FirstOrDefault(x => x.Mail == KullanıcıMail);
             if (Request.Files.Count > 0)
@@ -107,7 +107,7 @@ namespace OkulPano.Controllers
                 string DosyaAdı = Path.GetFileName(Request.Files[0].FileName);
                 string yol = "~/Resimler/" + Kullanıcı.OkulId + "/" + DosyaAdı;
                 Request.Files[0].SaveAs(Server.MapPath(yol));
-                 R.OkulId = Kullanıcı.OkulId;
+                R.OkulId = Kullanıcı.OkulId;
                 R.ResimYol = yol.ToString();
             }
             context.Resims.Add(R);
@@ -124,7 +124,7 @@ namespace OkulPano.Controllers
             {
                 string DosyaAdı = Path.GetFileName(Request.Files[0].FileName);
 
-                string yol = "~/Resimler/Profil/"+ DosyaAdı;
+                string yol = "~/Resimler/Profil/" + DosyaAdı;
                 R.OkulId = Kullanıcı.OkulId;
                 Request.Files[0].SaveAs(Server.MapPath(yol));
                 R.ResimYol = yol.ToString();
@@ -135,7 +135,37 @@ namespace OkulPano.Controllers
             return RedirectToAction("Index");
 
         }
+        public ActionResult Öğretmen()
+        {
+            string KullanıcıMail = Session["Mail"].ToString();
+            var Kullanıcı = context.Okuls.FirstOrDefault(x => x.Mail == KullanıcıMail);
+            var Öğretmen = context.Öğretmens.Where(x => x.OkulId == Kullanıcı.OkulId).ToList();
+
+            return View(Öğretmen);
+        }
+        [HttpGet]
+        public ActionResult ÖğretmenEkle()
+        {
 
 
+            return View();
+        }
+        [HttpPost]
+        public ActionResult ÖğretmenEkle(Öğretmen öğretmen)
+        {
+            string KullanıcıMail = Session["Mail"].ToString();
+            var Kullanıcı = context.Okuls.FirstOrDefault(x => x.Mail == KullanıcıMail);
+            öğretmen.OkulId = Kullanıcı.OkulId;
+            context.Öğretmens.Add(öğretmen);
+            context.SaveChanges();
+            return RedirectToAction("Öğretmen");
+        }
+
+        public ActionResult Nöbet() 
+        {
+
+            return View();
+        }
+        
     }
 }

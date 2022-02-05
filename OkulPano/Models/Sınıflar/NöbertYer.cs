@@ -11,9 +11,8 @@ namespace OkulPano.Models.Sınıflar
         [Key]
         public int Id { get; set; }
         public string Ad { get; set; }
-        public string Kat { get; set; }
         public int OkulId { get; set; }
-
+        public ICollection<Öğretmen> Öğretmens { get; set; }
 
 
     }

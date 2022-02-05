@@ -1,0 +1,38 @@
+﻿@using OkulPano.Models.Sınıflar
+@model List<Öğretmen> 
+@{
+    ViewBag.Title = "Öğretmen";
+    Layout = "~/Views/_ÜyeAdminLayout.cshtml";
+}
+
+<div class="panel">
+    <div class="panel-heading">
+        <h3 class="panel-title">Öğretmenler</h3>
+    </div>
+    <div class="panel-body">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Ad</th>
+                    <th>Soyad</th>
+                    <th>Nöbet Günü</th>
+                    <th>Nöbet Yeri</th>
+                </tr>
+            </thead>
+            
+            @foreach (var X in Model)
+            {
+                <tr>
+                    <td>@X.Id</td>
+                    <td>@X.Ad</td>
+                    <td>@X.Soyad</td>
+                    <td>@X.NöbetGün</td>
+                    <td>@X.NöbetYer</td>
+                </tr>
+
+            }
+        </table>
+        <a class="btn btn-success" href="~/ÜyeAdmin/ÖğretmenEkle" >Öğretmen Ekle</a>
+    </div>
+</div>

@@ -1606,6 +1606,9 @@
     <Content Include="Views\_ÜyeAdminLayout.cshtml" />
     <Content Include="Views\ÜyeAdmin\Index.cshtml" />
     <Content Include="Views\Giriş\HesapOnay.cshtml" />
+    <Content Include="Views\ÜyeAdmin\Öğretmen.cshtml" />
+    <Content Include="Views\ÜyeAdmin\ÖğretmenEkle.cshtml" />
+    <Content Include="Views\ÜyeAdmin\Nöbet.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
