@@ -146,9 +146,11 @@ namespace OkulPano.Controllers
         [HttpGet]
         public ActionResult ÖğretmenEkle()
         {
-
-
-            return View();
+            string KullanıcıMail = Session["Mail"].ToString();
+            var Kullanıcı = context.Okuls.FirstOrDefault(x => x.Mail == KullanıcıMail);
+            var Nöbet = context.NöbertYers.Where(x => x.OkulId == Kullanıcı.OkulId).ToList();
+          
+            return View(Nöbet);
         }
         [HttpPost]
         public ActionResult ÖğretmenEkle(Öğretmen öğretmen)
@@ -166,6 +168,9 @@ namespace OkulPano.Controllers
 
             return View();
         }
-                
+        
+
+
+
     }
 }

@@ -7,8 +7,8 @@
 <h2>ÖğretmenEkle</h2>
 <form class="form-group" method="post">
     <h3>Ad</h3>
-    @Html.TextBoxFor(x => x.Ad, new { @id = "OkulAd", @placeholder = "Okul Adı", required = "required" })
+    @Html.TextBoxFor(x => x.Ad, new { @id = "OkulAd", @placeholder = "Okul Adı", @class = "form-control", required = "required" })
     <h3>Soyad</h3>
-    @Html.TextBoxFor(x => x.Soyad, new { @id = "OkulAd", @placeholder = "Okul Adı", required = "required" })<br><br>
+    @Html.TextBoxFor(x => x.Soyad, new { @id = "OkulAd", @placeholder = "Okul Adı", @class = "form-control", required = "required" })<br><br>
     <button class="btn btn-success">Kaydet</button>
 </form>

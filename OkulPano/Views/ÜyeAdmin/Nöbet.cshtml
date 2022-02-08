@@ -1,5 +1,5 @@
 ﻿@using OkulPano.Models.Sınıflar
-@model List<NöbertYer>
+@model IEnumerable<OkulPano.Models.Sınıflar.NöbertYer>
 @{
     ViewBag.Title = "Nöbet";
     Layout = "~/Views/_ÜyeAdminLayout.cshtml";
@@ -13,16 +13,22 @@
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th>#</th>
+                    
                     <th>Ad</th>
+                    <th>Pazartesi</th>
+                    <th>Salı</th>
+                    <th>Çarşamba</th>
+                    <th>Perşembe</th>
+                    <th>Cuma</th>
                 </tr>
             </thead>
             @foreach (var X in Model)
             {
                 <tr>
-                    <td>@X.Id</td>
+                  @Html.Hidden(@X.Id.ToString())
                     <td>@X.Ad</td>
-                   
+                    <td></td>
+
                 </tr>
 
             }
