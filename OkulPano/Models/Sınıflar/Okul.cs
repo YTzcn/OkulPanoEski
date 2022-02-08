@@ -1,4 +1,4 @@
-﻿using System;
+﻿    using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -20,8 +20,8 @@ namespace OkulPano.Models.Sınıflar
         public string  KayarYazı { get; set; }
         public string  AktivasyonKod { get; set; }
         public bool Aktif { get; set; }
-        public DateTime KayıtTarihi { get; set; }
 
+        public DateTime KayıtTarihi { get; set; }
         public ICollection<NöbertYer> NöbertYers{ get; set; }
         public ICollection<Öğretmen> Öğretmens{ get; set; }
         public ICollection<Resim> Resims { get; set; }
