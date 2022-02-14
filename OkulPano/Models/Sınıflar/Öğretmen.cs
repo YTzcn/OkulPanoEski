@@ -14,6 +14,7 @@ namespace OkulPano.Models.Sınıflar
         public string Soyad { get; set; }
         public string NöbetGün { get; set; }
         public string NöbetYer { get; set; }
+        public bool Aktiflik { get; set; }
         public int OkulId { get; set; }
 
     }

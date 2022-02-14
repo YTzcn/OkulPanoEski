@@ -1,4 +1,5 @@
 ﻿using OkulPano.Models.Sınıflar;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Web.Mvc;
@@ -139,18 +140,16 @@ namespace OkulPano.Controllers
         {
             string KullanıcıMail = Session["Mail"].ToString();
             var Kullanıcı = context.Okuls.FirstOrDefault(x => x.Mail == KullanıcıMail);
-            var Öğretmen = context.Öğretmens.Where(x => x.OkulId == Kullanıcı.OkulId).ToList();
+            var Öğretmen = context.Öğretmens.Where(x => x.OkulId == Kullanıcı.OkulId && x.Aktiflik ==true).ToList();
 
             return View(Öğretmen);
         }
         [HttpGet]
         public ActionResult ÖğretmenEkle()
         {
-            string KullanıcıMail = Session["Mail"].ToString();
-            var Kullanıcı = context.Okuls.FirstOrDefault(x => x.Mail == KullanıcıMail);
-            var Nöbet = context.NöbertYers.Where(x => x.OkulId == Kullanıcı.OkulId).ToList();
-          
-            return View(Nöbet);
+
+
+            return View();
         }
         [HttpPost]
         public ActionResult ÖğretmenEkle(Öğretmen öğretmen)
@@ -158,17 +157,56 @@ namespace OkulPano.Controllers
             string KullanıcıMail = Session["Mail"].ToString();
             var Kullanıcı = context.Okuls.FirstOrDefault(x => x.Mail == KullanıcıMail);
             öğretmen.OkulId = Kullanıcı.OkulId;
+            öğretmen.Aktiflik = true;
             context.Öğretmens.Add(öğretmen);
             context.SaveChanges();
             return RedirectToAction("Öğretmen");
         }
-
-        public ActionResult Nöbet() 
+        [HttpGet]
+        public ActionResult ÖğretmenDüzenle(int Id) 
         {
+            string KullanıcıMail = Session["Mail"].ToString();
+            var Kullanıcı = context.Okuls.FirstOrDefault(x => x.Mail == KullanıcıMail);
+            var Öğretmen = context.Öğretmens.Find(Id);
 
-            return View();
+            return View("ÖğretmenDüzenle",Öğretmen);
         }
-        
+        [HttpPost]
+        public ActionResult ÖğretmenDüzenle(Öğretmen öğretmen) 
+        {
+            var Değerler = context.Öğretmens.Find(öğretmen.Id);
+            Değerler.Ad = öğretmen.Ad;
+            Değerler.Soyad = öğretmen.Soyad;
+            context.SaveChanges();
+            
+
+            return RedirectToAction("Öğretmen");
+        }
+        public ActionResult ÖğretmenSil(int Id) 
+        {
+            var Öğretmen = context.Öğretmens.Find(Id);
+            Öğretmen.Aktiflik = false;
+            context.SaveChanges();
+
+            return RedirectToAction("Öğretmen");
+        }
+
+        public ActionResult Nöbet()
+        {
+            string KullanıcıMail = Session["Mail"].ToString();
+            var Kullanıcı = context.Okuls.FirstOrDefault(x => x.Mail == KullanıcıMail);
+            var Nöbet = context.NöbertYers.Where(x => x.OkulId == Kullanıcı.OkulId).ToList();
+            List<SelectListItem> Value1 = (from x in context.Öğretmens.Where(x => x.OkulId == Kullanıcı.OkulId).ToList()
+                                           select new SelectListItem
+                                           {
+                                               Text = x.Ad + x.Soyad,
+                                               Value = x.Id.ToString()
+                                           }).ToList();
+            ViewBag.Value1 = Value1;
+
+            return View(Nöbet);
+        }
+
 
 
 

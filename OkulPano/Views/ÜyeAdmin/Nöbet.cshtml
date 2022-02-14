@@ -10,29 +10,36 @@
         <h3 class="panel-title">Nöbetler</h3>
     </div>
     <div class="panel-body">
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    
-                    <th>Ad</th>
-                    <th>Pazartesi</th>
-                    <th>Salı</th>
-                    <th>Çarşamba</th>
-                    <th>Perşembe</th>
-                    <th>Cuma</th>
-                </tr>
-            </thead>
-            @foreach (var X in Model)
-            {
-                <tr>
-                  @Html.Hidden(@X.Id.ToString())
-                    <td>@X.Ad</td>
-                    <td></td>
+        <form method="post">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
 
-                </tr>
+                        <th>Ad</th>
+                        <th>Pazartesi</th>
+                        <th>Salı</th>
+                        <th>Çarşamba</th>
+                        <th>Perşembe</th>
+                        <th>Cuma</th>
+                    </tr>
+                </thead>
+                @foreach (var X in Model)
+                {
+                    <tr>
+                        @Html.Hidden(@X.Id.ToString())
+                        <td>@X.Ad</td>
+                        <td> @Html.DropDownListFor(x => X.Öğretmens, (List<SelectListItem>)ViewBag.Value1, new { @class = "form-control" })</td>
+                        <td> @Html.DropDownListFor(x => X.Öğretmens, (List<SelectListItem>)ViewBag.Value1, new { @class = "form-control" })</td>
+                        <td> @Html.DropDownListFor(x => X.Öğretmens, (List<SelectListItem>)ViewBag.Value1, new { @class = "form-control" })</td>
+                        <td> @Html.DropDownListFor(x => X.Öğretmens, (List<SelectListItem>)ViewBag.Value1, new { @class = "form-control" })</td>
+                        <td> @Html.DropDownListFor(x => X.Öğretmens, (List<SelectListItem>)ViewBag.Value1, new { @class = "form-control" })</td>
 
-            }
-        </table>
-        <a class="btn btn-success" href="~/ÜyeAdmin/ÖğretmenEkle">Öğretmen Ekle</a>
+                    </tr>
+
+                }
+            </table>
+            <button class="btn btn-success">Kaydet</button>
+        </form>
+        
     </div>
 </div>
