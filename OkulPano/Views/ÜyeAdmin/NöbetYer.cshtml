@@ -1,0 +1,36 @@
+﻿@using OkulPano.Models.Sınıflar
+@model List<NöbertYer>
+@{
+    ViewBag.Title = "NöbetYerEkle";
+    Layout = "~/Views/_ÜyeAdminLayout.cshtml";
+}
+
+<div class="panel">
+    <div class="panel-heading">
+        <h3 class="panel-title">Öğretmenler</h3>
+    </div>
+    <div class="panel-body">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Ad</th>
+                    <th>Düzenle</th>
+                    <th>Sil</th>
+                </tr>
+            </thead>
+
+            @foreach (var X in Model)
+            {
+                <tr>
+                    <td>@X.Id</td>
+                    <td>@X.Ad</td>
+                    <td><a href="~/ÜyeAdmin/NöbetYeriDüzenle/@X.Id" class="btn btn-warning">Düzenle</a></td>
+                    <td><a href="~/ÜyeAdmin/NöbetYeriSil/@X.Id" class="btn btn-danger">Sil</a></td>
+                </tr>
+
+            }
+        </table>
+        <a class="btn btn-success" href="~/ÜyeAdmin/NöbetYeriEkle">Nöbet Yeri Ekle</a>
+    </div>
+</div>

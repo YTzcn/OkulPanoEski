@@ -140,7 +140,7 @@ namespace OkulPano.Controllers
         {
             string KullanıcıMail = Session["Mail"].ToString();
             var Kullanıcı = context.Okuls.FirstOrDefault(x => x.Mail == KullanıcıMail);
-            var Öğretmen = context.Öğretmens.Where(x => x.OkulId == Kullanıcı.OkulId && x.Aktiflik ==true).ToList();
+            var Öğretmen = context.Öğretmens.Where(x => x.OkulId == Kullanıcı.OkulId && x.Aktiflik == true).ToList();
 
             return View(Öğretmen);
         }
@@ -163,26 +163,26 @@ namespace OkulPano.Controllers
             return RedirectToAction("Öğretmen");
         }
         [HttpGet]
-        public ActionResult ÖğretmenDüzenle(int Id) 
+        public ActionResult ÖğretmenDüzenle(int Id)
         {
             string KullanıcıMail = Session["Mail"].ToString();
             var Kullanıcı = context.Okuls.FirstOrDefault(x => x.Mail == KullanıcıMail);
             var Öğretmen = context.Öğretmens.Find(Id);
 
-            return View("ÖğretmenDüzenle",Öğretmen);
+            return View("ÖğretmenDüzenle", Öğretmen);
         }
         [HttpPost]
-        public ActionResult ÖğretmenDüzenle(Öğretmen öğretmen) 
+        public ActionResult ÖğretmenDüzenle(Öğretmen öğretmen)
         {
             var Değerler = context.Öğretmens.Find(öğretmen.Id);
             Değerler.Ad = öğretmen.Ad;
             Değerler.Soyad = öğretmen.Soyad;
             context.SaveChanges();
-            
+
 
             return RedirectToAction("Öğretmen");
         }
-        public ActionResult ÖğretmenSil(int Id) 
+        public ActionResult ÖğretmenSil(int Id)
         {
             var Öğretmen = context.Öğretmens.Find(Id);
             Öğretmen.Aktiflik = false;
@@ -206,9 +206,56 @@ namespace OkulPano.Controllers
 
             return View(Nöbet);
         }
+        public ActionResult NöbetYer()
+        {
+            string KullanıcıMail = Session["Mail"].ToString();
+            var Kullanıcı = context.Okuls.FirstOrDefault(x => x.Mail == KullanıcıMail);
+            var Nöbet = context.NöbertYers.Where(x => x.OkulId == Kullanıcı.OkulId && x.Aktiflik == true).ToList();
+            return View(Nöbet);
+        }
+        [HttpGet]
+        public ActionResult NöbetYeriDüzenle(int Id)
+        {
+            var NöbetYerler = context.NöbertYers.Find(Id);
+            return View("NöbetYeriDüzenle",NöbetYerler);
+        }
+        [HttpPost]
+        public ActionResult NöbetYeriDüzenle(NöbertYer nöbert)
+        {
 
+            var Değerler = context.NöbertYers.Find(nöbert.Id);
+            Değerler.Ad = nöbert.Ad;
+            context.SaveChanges();
+            return RedirectToAction("NöbetYer");
+        }
+        [HttpGet]
+        public ActionResult NöbetYeriSil(int Id)
+        {
+            var NöbetYerler = context.NöbertYers.Find(Id);
+            NöbetYerler.Aktiflik = false;
+            context.SaveChanges();
+            return RedirectToAction("NöbetYer");
+        }
+        [HttpPost]
+        public ActionResult NöbetYeriSil(NöbertYer nöbet)
+        {
+            var NöbetYeri = context.NöbertYers.Find(nöbet.Id);
+            NöbetYeri.Aktiflik = false;
+            context.SaveChanges();
 
+            return View();
+        }
+        public ActionResult NöbetYeriEkle(NöbertYer nöbetYer)
+        {
+            string KullanıcıMail = Session["Mail"].ToString();
+            var Kullanıcı = context.Okuls.FirstOrDefault(x => x.Mail == KullanıcıMail);
+            nöbetYer.Aktiflik = true;
+            nöbetYer.OkulId = Kullanıcı.OkulId;
+            context.NöbertYers.Add(nöbetYer);
+            context.SaveChanges();
 
-
+            
+            return RedirectToAction("NöbetYer");
+        }
     }
 }

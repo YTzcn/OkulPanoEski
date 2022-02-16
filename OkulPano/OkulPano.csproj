@@ -1610,6 +1610,8 @@
     <Content Include="Views\ÜyeAdmin\ÖğretmenEkle.cshtml" />
     <Content Include="Views\ÜyeAdmin\Nöbet.cshtml" />
     <Content Include="Views\ÜyeAdmin\ÖğretmenDüzenle.cshtml" />
+    <Content Include="Views\ÜyeAdmin\NöbetYer.cshtml" />
+    <Content Include="Views\ÜyeAdmin\NöbetYeriDüzenle.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
