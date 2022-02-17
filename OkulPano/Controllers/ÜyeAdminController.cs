@@ -195,8 +195,8 @@ namespace OkulPano.Controllers
         {
             string KullanıcıMail = Session["Mail"].ToString();
             var Kullanıcı = context.Okuls.FirstOrDefault(x => x.Mail == KullanıcıMail);
-            var Nöbet = context.NöbertYers.Where(x => x.OkulId == Kullanıcı.OkulId).ToList();
-            List<SelectListItem> Value1 = (from x in context.Öğretmens.Where(x => x.OkulId == Kullanıcı.OkulId).ToList()
+            var Nöbet = context.NöbertYers.Where(x => x.OkulId == Kullanıcı.OkulId&& x.Aktiflik==true).ToList();
+            List<SelectListItem> Value1 = (from x in context.Öğretmens.Where(x => x.OkulId == Kullanıcı.OkulId && x.Aktiflik == true).ToList()
                                            select new SelectListItem
                                            {
                                                Text = x.Ad + x.Soyad,
@@ -245,6 +245,12 @@ namespace OkulPano.Controllers
 
             return View();
         }
+        [HttpGet]
+        public ActionResult NöbetYeriEkle() 
+        {
+            return View();
+        }
+        [HttpPost]
         public ActionResult NöbetYeriEkle(NöbertYer nöbetYer)
         {
             string KullanıcıMail = Session["Mail"].ToString();
