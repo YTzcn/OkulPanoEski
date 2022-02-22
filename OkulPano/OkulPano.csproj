@@ -129,6 +129,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\GirişController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PanelController.cs" />
     <Compile Include="Controllers\ÜyeAdminController.cs" />
     <Compile Include="EkSınıflar\GuvenlikResmi.cs" />
     <Compile Include="Global.asax.cs">
@@ -1613,6 +1614,7 @@
     <Content Include="Views\ÜyeAdmin\NöbetYer.cshtml" />
     <Content Include="Views\ÜyeAdmin\NöbetYeriDüzenle.cshtml" />
     <Content Include="Views\ÜyeAdmin\NöbetYeriEkle.cshtml" />
+    <Content Include="Views\Panel\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
