@@ -1,10 +1,11 @@
 ﻿    using System;
 using System.Collections.Generic;
+using System.Collections;
 using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-
+using OkulPano.Models.ViewModels;
 using OkulPano.Models.Sınıflar;
 
 namespace OkulPano.Controllers
@@ -13,6 +14,7 @@ namespace OkulPano.Controllers
     {
         // GET: Panel
         Context context = new Context();
+        OkulViewModel ovm = new OkulViewModel();
         public ActionResult Index()
         {
             string KullanıcıMail = Session["Mail"].ToString();
@@ -22,9 +24,12 @@ namespace OkulPano.Controllers
             System.IO.FileInfo ff = new System.IO.FileInfo(KullanıcıR.ResimYol);
             string DosyaUzantisi = ff.Extension;
             ViewBag.Logo =  Kullanıcı.OkulId+DosyaUzantisi;
-            var Öğretmen = context.Öğretmens.Where(x => x.OkulId == Kullanıcı.OkulId && x.Aktiflik == true).ToList();
+            var NöbetYerler = context.NöbertYers.Where(x => x.OkulId == Kullanıcı.OkulId && x.Aktiflik == true).ToList();
+            
+            
+      
 
-            return View(Öğretmen);
+            return View(NöbetYerler);
         }
     }
 }

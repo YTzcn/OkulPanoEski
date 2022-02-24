@@ -13,6 +13,8 @@ namespace OkulPano.Models.ViewModels
         public Resim Resim { get; set; }
         public NöbertYer NöbertYer{ get; set; }
         public Öğretmen öğretmen { get; set; }
+        public Context context{ get; set; }
+        
 
         public string Guvenlik { get; set; }
     }

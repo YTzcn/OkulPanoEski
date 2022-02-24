@@ -1,5 +1,5 @@
-﻿@using OkulPano.Models.ViewModels
-@model List<OkulViewModel>
+﻿@using OkulPano.Models.Sınıflar
+@model List<NöbertYer>
 @{
     Layout = null;
 }
@@ -117,8 +117,8 @@
                                         @foreach (var X in Model)
                                         {
                                             <tr>
-                                                <td>@X.NöbertYer.Ad</td>
-                                                <td>@X.öğretmen.Ad</td>
+                                                <td>@X.Ad</td>
+                                                <td>@X.Öğretmens.Where(s=>s.NöbetYer == X.Ad && X.Aktiflik==true && s.Aktiflik==true)</td>
                                                 
                                                 <td><a href="~/ÜyeAdmin/NöbetYeriSil/@X." class="btn btn-danger">Sil</a></td>
                                             </tr>
