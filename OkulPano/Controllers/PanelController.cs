@@ -25,8 +25,8 @@ namespace OkulPano.Controllers
             string DosyaUzantisi = ff.Extension;
             ViewBag.Logo =  Kullanıcı.OkulId+DosyaUzantisi;
             var NöbetYerler = context.NöbertYers.Where(x => x.OkulId == Kullanıcı.OkulId && x.Aktiflik == true).ToList();
-            
-            
+            var öğretmen = context.Öğretmens.Where(x => x.OkulId == Kullanıcı.OkulId).ToList();
+            ViewBag.öğretmendeger = öğretmen;
       
 
             return View(NöbetYerler);
