@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Web.Mvc;
+
 namespace OkulPano.Controllers
 {
     public class ÜyeAdminController : Controller
@@ -107,6 +108,7 @@ namespace OkulPano.Controllers
             {
                 string DosyaAdı = Path.GetFileName(Request.Files[0].FileName);
                 string yol = "~/Resimler/" + Kullanıcı.OkulId + "/" + DosyaAdı;
+                Directory.Move(yol, "~/Resimler/" + Kullanıcı.OkulId + "/" + Kullanıcı.OkulId);
                 Request.Files[0].SaveAs(Server.MapPath(yol));
                 R.OkulId = Kullanıcı.OkulId;
                 R.ResimYol = yol.ToString();
@@ -121,11 +123,14 @@ namespace OkulPano.Controllers
         {
             string KullanıcıMail = Session["Mail"].ToString();
             var Kullanıcı = context.Okuls.FirstOrDefault(x => x.Mail == KullanıcıMail);
+            var KullanıcıR = context.Resims.FirstOrDefault(x => x.OkulId == Kullanıcı.OkulId);
+
             if (Request.Files.Count > 0)
             {
                 string DosyaAdı = Path.GetFileName(Request.Files[0].FileName);
 
                 string yol = "~/Resimler/Profil/" + DosyaAdı;
+                Directory.Move(yol, "~/Resimler/" + Kullanıcı.OkulId + "/" + KullanıcıR.OkulId);
                 R.OkulId = Kullanıcı.OkulId;
                 Request.Files[0].SaveAs(Server.MapPath(yol));
                 R.ResimYol = yol.ToString();
@@ -195,7 +200,7 @@ namespace OkulPano.Controllers
         {
             string KullanıcıMail = Session["Mail"].ToString();
             var Kullanıcı = context.Okuls.FirstOrDefault(x => x.Mail == KullanıcıMail);
-            var Nöbet = context.NöbertYers.Where(x => x.OkulId == Kullanıcı.OkulId&& x.Aktiflik==true).ToList();
+            var Nöbet = context.NöbertYers.Where(x => x.OkulId == Kullanıcı.OkulId && x.Aktiflik == true).ToList();
             List<SelectListItem> Value1 = (from x in context.Öğretmens.Where(x => x.OkulId == Kullanıcı.OkulId && x.Aktiflik == true).ToList()
                                            select new SelectListItem
                                            {
@@ -217,7 +222,7 @@ namespace OkulPano.Controllers
         public ActionResult NöbetYeriDüzenle(int Id)
         {
             var NöbetYerler = context.NöbertYers.Find(Id);
-            return View("NöbetYeriDüzenle",NöbetYerler);
+            return View("NöbetYeriDüzenle", NöbetYerler);
         }
         [HttpPost]
         public ActionResult NöbetYeriDüzenle(NöbertYer nöbert)
@@ -246,7 +251,7 @@ namespace OkulPano.Controllers
             return View();
         }
         [HttpGet]
-        public ActionResult NöbetYeriEkle() 
+        public ActionResult NöbetYeriEkle()
         {
             return View();
         }
@@ -260,7 +265,7 @@ namespace OkulPano.Controllers
             context.NöbertYers.Add(nöbetYer);
             context.SaveChanges();
 
-            
+
             return RedirectToAction("NöbetYer");
         }
     }

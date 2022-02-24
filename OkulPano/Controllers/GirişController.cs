@@ -67,12 +67,6 @@ namespace OkulPano.Controllers
             string KoddanGelen = Session["GuvenlikResmi"].ToString();
             if (ovm.Guvenlik == KoddanGelen)
             {
-                
-                
-                var Bilgiler = context.Okuls.Add(ovm.Okul);
-                Bilgiler.AktivasyonKod = Aktivasyon.ToString();
-                Bilgiler.KayıtTarihi = DateTime.Today;
-                context.SaveChanges();
 
                 string mail = ovm.Okul.Mail;
                 MailMessage mesajım = new MailMessage();//mesaj oluşturma
@@ -87,6 +81,11 @@ namespace OkulPano.Controllers
                 mesajım.Body = "https://localhost:44382/Giriş/HesapOnay?kod=" + Aktivasyon;//ana konu
                 istemci.Send(mesajım);//mail gönderme komutu 
                 TempData["GuvenlikKoduHata"] = "Mail adresinize gelen linkten hesabınızı aktif ettikten sonra giriş yapabilirsiniz";
+                
+                var Bilgiler = context.Okuls.Add(ovm.Okul);
+                Bilgiler.AktivasyonKod = Aktivasyon.ToString();
+                Bilgiler.KayıtTarihi = DateTime.Today;
+                context.SaveChanges();
 
                 return RedirectToAction("Index");
             }
