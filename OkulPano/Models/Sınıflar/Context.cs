@@ -12,5 +12,6 @@ namespace OkulPano.Models.Sınıflar
         public DbSet<Öğretmen> Öğretmens { get; set; }
         public DbSet<Resim> Resims { get; set; }
         public DbSet<NöbertYer> NöbertYers { get; set; }
+        public DbSet<KayanResim> KayanResims { get; set; }
     }
 }

@@ -99,7 +99,7 @@ namespace OkulPano.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult ResimEkle(Resim R)
+        public ActionResult ResimEkle(KayanResim R )
         {
 
             string KullanıcıMail = Session["Mail"].ToString();
@@ -113,7 +113,7 @@ namespace OkulPano.Controllers
                 R.OkulId = Kullanıcı.OkulId;
                 R.ResimYol = yol.ToString();
             }
-            context.Resims.Add(R);
+            context.KayanResims.Add(R);
             context.SaveChanges();
 
             return RedirectToAction("Index");

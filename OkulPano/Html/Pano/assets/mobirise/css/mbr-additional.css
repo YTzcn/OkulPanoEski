@@ -1050,7 +1050,9 @@ a {
   height: 100%;
   object-fit: cover;
 }
-.cid-sOEEZGGqUr .carousel-item,
+    .cid-sOEEZGGqUr .carousel-item {
+        height:100%;
+    }
 .cid-sOEEZGGqUr .carousel-inner {
   height: 100%;
 }
