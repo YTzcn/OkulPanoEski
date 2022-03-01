@@ -154,6 +154,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <None Include="Dinamic Slider" />
     <Content Include="Html\Admin Panel 1\Documentation\assets\css\docs.css" />
     <Content Include="Html\Admin Panel 1\Documentation\assets\js\docs.js" />
     <Content Include="Html\Admin Panel 1\Documentation\assets\plugins\search\highlight.js" />
