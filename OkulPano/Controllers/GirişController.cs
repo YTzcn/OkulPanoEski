@@ -8,20 +8,21 @@ using System.Linq;
 using System.Net.Mail;
 using System.Web.Mvc;
 using System.Web.Security;
-
+using System.Threading;
 namespace OkulPano.Controllers
 {
     public class GirişController : Controller
     {
         // GET: Giriş
         Context context = new Context();
-
+       
         Guid Aktivasyon = Guid.NewGuid();
 
 
         public ActionResult Index()
         {
-            return View();
+            return View(); 
+         
         }
         [HttpGet]
         public ActionResult Login()

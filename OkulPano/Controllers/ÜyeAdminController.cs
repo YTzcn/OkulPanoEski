@@ -108,7 +108,6 @@ namespace OkulPano.Controllers
             {
                 string DosyaAdı = Path.GetFileName(Request.Files[0].FileName);
                 string yol = "~/Resimler/" + Kullanıcı.OkulId + "/" + DosyaAdı;
-                Directory.Move(yol, "~/Resimler/" + Kullanıcı.OkulId + "/" + Kullanıcı.OkulId);
                 Request.Files[0].SaveAs(Server.MapPath(yol));
                 R.OkulId = Kullanıcı.OkulId;
                 R.ResimYol = yol.ToString();
@@ -128,9 +127,7 @@ namespace OkulPano.Controllers
             if (Request.Files.Count > 0)
             {
                 string DosyaAdı = Path.GetFileName(Request.Files[0].FileName);
-
                 string yol = "~/Resimler/Profil/" + DosyaAdı;
-                Directory.Move(yol, "~/Resimler/" + Kullanıcı.OkulId + "/" + KullanıcıR.OkulId);
                 R.OkulId = Kullanıcı.OkulId;
                 Request.Files[0].SaveAs(Server.MapPath(yol));
                 R.ResimYol = yol.ToString();

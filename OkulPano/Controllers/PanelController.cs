@@ -27,7 +27,9 @@ namespace OkulPano.Controllers
             var NöbetYerler = context.NöbertYers.Where(x => x.OkulId == Kullanıcı.OkulId && x.Aktiflik == true).ToList();
             var öğretmen = context.Öğretmens.Where(x => x.OkulId == Kullanıcı.OkulId).ToList();
             ViewBag.öğretmendeger = öğretmen;
-      
+            ViewBag.Kayaryazı = context.Okuls.Where(x => x.OkulId == Kullanıcı.OkulId).Select(x=>x.KayarYazı).FirstOrDefault();
+            ViewBag.Tarih = DateTime.Now.ToString();
+
 
             return View(NöbetYerler);
         }
