@@ -3,7 +3,6 @@
 @{
     Layout = null;
 }
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -66,7 +65,7 @@
                             <span id="jsZaman"> </span>
                         </a>
                     </div>
-                    
+
                 </div>
             </div>
         </nav>
@@ -77,15 +76,18 @@
         <div class="carousel slide" id="sOEFzWd4fc" data-ride="carousel" data-bs-ride="carousel" data-interval="5000" data-bs-interval="5000">
 
             <div class="carousel-inner">
-              
-                <div class="carousel-item slider-image item active">
+
+
+                @foreach (var x in ViewBag.KayanList)
+                {
+                <div class="carousel-item slider-image item ">
                     <div class="item-wrapper">
-                        <img class="d-block w-100" src="~/Html/Pano/assets/images/background3.jpg">
+                        <img class="d-block w-100" src="~/Resimler/@x">
 
 
                     </div>
                 </div>
-               
+                }
 
             </div>
             <section class="">
@@ -94,26 +96,25 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="table-wrap">
-                              
-                                    <table class="table table-striped">
-                                        <thead>
-                                            <tr>
-                                                <th>Nöbet Yer</th>
-                                                <th>Öğretmen</th>
-                                            </tr>
-                                        </thead>
 
-                                        @foreach (var X in Model)
-                                        {
-                                            <tr>
-                                                <td>@X.Ad</td>
-                                                <td>Yapım Aşamasında</td>
-                                                
-                                                
-                                            </tr>
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>Nöbet Yer</th>
+                                            <th>Öğretmen</th>
+                                        </tr>
+                                    </thead>
 
-                                        }
-                                   
+
+                                    <tr>
+                                        <td>Yapım Aşamasında</td>
+                                        <td>Yapım Aşamasında</td>
+
+
+                                    </tr>
+
+
+
                                 </table>
                             </div>
                         </div>
@@ -158,7 +159,7 @@
         mm = '0' + mm
     }
 
-    today = dd + '.' + mm + '.' + yyyy+'  -   ';
+    today = dd + '.' + mm + '.' + yyyy + '  -   ';
     document.getElementById("jsTarih").innerHTML = today;
     var myVar = setInterval(function () { myTimer() }, 1000);
 
@@ -168,3 +169,5 @@
     }
 
 </script>
+
+
