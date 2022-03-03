@@ -3,6 +3,9 @@
 @{
     Layout = null;
 }
+@{ 
+    bool a = true;
+}
 <!DOCTYPE html>
 <html>
 <head>
@@ -73,77 +76,89 @@
 
     <section data-bs-version="5.1" class="slider1 cid-sOEEZGGqUr" id="slider1-l">
 
-        <div class="carousel slide" id="sOEFzWd4fc" data-ride="carousel" data-bs-ride="carousel" data-interval="5000" data-bs-interval="5000">
+        <div class="carousel slide " style="align-self:auto;" id="sOEFzWd4fc" data-ride="carousel" data-bs-ride="carousel" data-interval="5000" data-bs-interval="5000">
 
             <div class="carousel-inner">
 
-
+                
                 @foreach (var x in ViewBag.KayanList)
                 {
-                <div class="carousel-item slider-image item ">
-                    <div class="item-wrapper">
-                        <img class="d-block w-100" src="~/Resimler/@x">
 
 
-                    </div>
-                </div>
+                    
+                    string ac = "active";
+                    if (!a)
+                    {
+                        ac = "";
+                    }          
+                        <div class="carousel-item slider-image item @ac ">
+                            <div class="item-wrapper">
+                                <img class="d-block w-100" src="~/Resimler/@x">
+
+
+
+
+                            </div>
+                        </div>
+                   a = false;
+
                 }
-
             </div>
-            <section class="">
-                <div class="container">
+            
+                <section class="">
+                    <div class="container">
 
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="table-wrap">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="table-wrap">
 
-                                <table class="table table-striped">
-                                    <thead>
+                                    <table class="table table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>Nöbet Yer</th>
+                                                <th>Öğretmen</th>
+                                            </tr>
+                                        </thead>
+
+
                                         <tr>
-                                            <th>Nöbet Yer</th>
-                                            <th>Öğretmen</th>
+                                            <td>Yapım Aşamasında</td>
+                                            <td>Yapım Aşamasında</td>
+
+
                                         </tr>
-                                    </thead>
-
-
-                                    <tr>
-                                        <td>Yapım Aşamasında</td>
-                                        <td>Yapım Aşamasında</td>
-
-
-                                    </tr>
 
 
 
-                                </table>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </section>
+                </section>
 
-            <script src="~/Html/Pano/assets/js/jquery.min.js"></script>
-            <script src="~/Html/Pano/assets/js/popper.js"></script>
-            <script src="~/Html/Pano/assets/js/bootstrap.min.js"></script>
-            <script src="~/Html/Pano/assets/js/main.js"></script>
+                <script src="~/Html/Pano/assets/js/jquery.min.js"></script>
+                <script src="~/Html/Pano/assets/js/popper.js"></script>
+                <script src="~/Html/Pano/assets/js/bootstrap.min.js"></script>
+                <script src="~/Html/Pano/assets/js/main.js"></script>
 
+            </div>
+
+        </section>
+        <div style="background-color: #242424; position: fixed; bottom: 0px; left: 0px; width: 100%; height: 109px; padding: 15px; ">
+            <marquee behavior="" direction="left" style="color: rgb(255, 255, 255);"> <h2 style="font-size: 585%;">@ViewBag.Kayaryazı</h2></marquee>
         </div>
 
-    </section>
-    <div style="background-color: #242424; position: fixed; bottom: 0px; left: 0px; width: 100%; height: 109px; padding: 15px; ">
-        <marquee behavior="" direction="left" style="color: rgb(255, 255, 255);"> <h2 style="font-size: 585%;">@ViewBag.Kayaryazı</h2></marquee>
-    </div>
+
+        <section style="background-color: #fff; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif; color:#aaa; font-size:12px; padding: 0; align-items: center; display: flex;"><a style="flex: 1 1; display : none;height: 3rem; padding-left: 1rem;"></a><p style="flex: 0 0 auto; margin:0; padding-right:1rem;"><a href="https://mobirise.site/y" style="color:#aaa;"></a></p></section>
+        <script src="~/Html/Pano/assets/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script src="~/Html/Pano/assets/smoothscroll/smooth-scroll.js"></script>
+        <script src="~/Html/Pano/assets/ytplayer/index.js"></script>
+        <script src="~/Html/Pano/assets/dropdown/js/navbar-dropdown.js"></script>
+        <script src="~/Html/Pano/assets/theme/js/script.js"></script>
 
 
-    <section style="background-color: #fff; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif; color:#aaa; font-size:12px; padding: 0; align-items: center; display: flex;"><a style="flex: 1 1; display : none;height: 3rem; padding-left: 1rem;"></a><p style="flex: 0 0 auto; margin:0; padding-right:1rem;"><a href="https://mobirise.site/y" style="color:#aaa;"></a></p></section>
-    <script src="~/Html/Pano/assets/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="~/Html/Pano/assets/smoothscroll/smooth-scroll.js"></script>
-    <script src="~/Html/Pano/assets/ytplayer/index.js"></script>
-    <script src="~/Html/Pano/assets/dropdown/js/navbar-dropdown.js"></script>
-    <script src="~/Html/Pano/assets/theme/js/script.js"></script>
-
-
-</body>
+    </body>
 </html>
 <script>
 

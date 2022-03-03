@@ -2788,6 +2788,10 @@ input[type="button"].btn-block {
   padding-right: 0.75rem;
   padding-left: 0.75rem; }
 
+img.d-block.w-100 {
+    object-fit: contain;
+}
+
 .btn-group-vertical {
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
@@ -5104,7 +5108,7 @@ a.close.disabled {
   position: relative;
   display: none;
   float: left;
-  width: 110%;
+  width: 100%;
   
   margin-right: -100%;
   -webkit-backface-visibility: hidden;
@@ -6495,7 +6499,9 @@ button.bg-dark:focus {
   width: 75% !important; }
 
 .w-100 {
-  width: 100% !important; }
+    width: 100% !important;
+    height: 99%;
+}
 
 .w-auto {
   width: auto !important; }

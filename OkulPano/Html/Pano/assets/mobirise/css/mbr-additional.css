@@ -1072,9 +1072,13 @@ a {
 }
 .cid-sOEEZGGqUr .item-wrapper {
   width: 100%;
+  height:auto;
+}
+img.d-block.w-100 {
+    object-fit: contain;
 }
 @media (max-width: 767px) {
-  .cid-sOEEZGGqUr .container .carousel-control {
+    .cid-sOEEZGGqUr .container .carousel-control {
     margin-bottom: 0;
   }
   .cid-sOEEZGGqUr .content-slider-wrap {

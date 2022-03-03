@@ -34,6 +34,7 @@ namespace OkulPano.Controllers
             
             var KayanResimList = context.KayanResims.Where(x => x.OkulId == Kullanıcı.OkulId).Select(x=>x.ResimYol).ToList();
             ViewBag.KayanList = KayanResimList;
+
             return View();
         }
     }
