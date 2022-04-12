@@ -99,7 +99,7 @@ namespace OkulPano.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult ResimEkle(KayanResim R )
+        public ActionResult ResimEkle(KayanResim R)
         {
 
             string KullanıcıMail = Session["Mail"].ToString();
@@ -107,7 +107,7 @@ namespace OkulPano.Controllers
             if (Request.Files.Count > 0)
             {
                 string DosyaAdı = Path.GetFileName(Request.Files[0].FileName);
-                string yol = "/" + Kullanıcı.OkulId + "/" + DosyaAdı;
+                string yol = "/" + "Resimler" + "/" + Kullanıcı.OkulId + "/" + DosyaAdı;
                 Request.Files[0].SaveAs(Server.MapPath(yol));
                 R.OkulId = Kullanıcı.OkulId;
                 R.ResimYol = yol.ToString();
@@ -123,14 +123,26 @@ namespace OkulPano.Controllers
             string KullanıcıMail = Session["Mail"].ToString();
             var Kullanıcı = context.Okuls.FirstOrDefault(x => x.Mail == KullanıcıMail);
             var KullanıcıR = context.Resims.FirstOrDefault(x => x.OkulId == Kullanıcı.OkulId);
+            string yol = "";
+            string DosyaAdı = "";   
+            string DosyaTürü = "";
 
+            //string YeniYol= "";   
             if (Request.Files.Count > 0)
             {
-                string DosyaAdı = Path.GetFileName(Request.Files[0].FileName);
-                string yol = "/Profil/" + DosyaAdı;
+                DosyaAdı = Path.GetFileName(Request.Files[0].FileName);
+                FileInfo fileInfo = new FileInfo(KullanıcıR.ResimYol);
+                DosyaTürü = fileInfo.Extension;
+                yol = "/Resimler/Profil/";
                 R.OkulId = Kullanıcı.OkulId;
-                Request.Files[0].SaveAs(Server.MapPath(yol));
+                Request.Files[0].SaveAs(Server.MapPath(yol+DosyaAdı));
                 R.ResimYol = yol.ToString();
+            }
+            FileInfo fi = new FileInfo(Server.MapPath(yol+DosyaAdı));
+            if (fi.Exists)
+            {
+                fi.MoveTo(Server.MapPath(yol + Kullanıcı.OkulId+DosyaTürü));
+                R.ResimYol = "~"+yol + Kullanıcı.OkulId+DosyaTürü;
             }
             context.Resims.Add(R);
             context.SaveChanges();

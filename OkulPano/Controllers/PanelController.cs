@@ -29,7 +29,9 @@ namespace OkulPano.Controllers
             ViewBag.öğretmendeger = öğretmen;
             ViewBag.Kayaryazı = context.Okuls.Where(x => x.OkulId == Kullanıcı.OkulId).Select(x=>x.KayarYazı).FirstOrDefault();
             ViewBag.Tarih = DateTime.Now.ToString();
+            Queue queue = new Queue();
 
+            ViewBag.que = queue;
 
             
             var KayanResimList = context.KayanResims.Where(x => x.OkulId == Kullanıcı.OkulId).Select(x=>x.ResimYol).ToList();

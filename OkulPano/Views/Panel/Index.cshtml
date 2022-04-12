@@ -93,7 +93,7 @@
                     }          
                         <div class="carousel-item slider-image item @ac ">
                             <div class="item-wrapper">
-                                <img class="d-block w-100" src="~/Resimler/@x">
+                                <img class="d-block w-100" src="@x">
 
 
 
@@ -120,13 +120,14 @@
                                             </tr>
                                         </thead>
 
+                                        @foreach (var item in ViewBag.que)
+                                        {
+                                            <tr>
+                                                <td></td>
+                                                <td>Yapım Aşamasında</td>
+                                            </tr>
+                                        }
 
-                                        <tr>
-                                            <td>Yapım Aşamasında</td>
-                                            <td>Yapım Aşamasında</td>
-
-
-                                        </tr>
 
 
 
