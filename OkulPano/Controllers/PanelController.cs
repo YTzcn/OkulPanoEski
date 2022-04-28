@@ -44,7 +44,7 @@ namespace OkulPano.Controllers
             foreach (NöbertYer nöbetYer in GünlükNöbetYerleri)
             {
                 List<Öğretmen> OGünküNöbetçiler= new List<Öğretmen>();
-                OGünküNöbetçiler.AddRange(context.Öğretmens.Where(x => x.NöbetGün== Gün && x.Id == nöbetYer.Id));
+                OGünküNöbetçiler.AddRange(context.Öğretmens.Where(x => x.NöbetGün== Gün && x.NoöetYerId == nöbetYer.Id));
                 model.Add(nöbetYer, OGünküNöbetçiler);
             }
 

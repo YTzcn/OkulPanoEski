@@ -16,6 +16,7 @@ namespace OkulPano.Models.Sınıflar
         public string NöbetYer { get; set; }
         public bool Aktiflik { get; set; }
         public int OkulId { get; set; }
+        public int NoöetYerId { get; set; }
         public ICollection<NöbertYer> NöbertYers { get; set; }
     }
 }
