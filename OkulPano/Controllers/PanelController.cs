@@ -36,8 +36,28 @@ namespace OkulPano.Controllers
             
             var KayanResimList = context.KayanResims.Where(x => x.OkulId == Kullanıcı.OkulId).Select(x=>x.ResimYol).ToList();
             ViewBag.KayanList = KayanResimList;
+            string Gün = CultureInfo.CurrentCulture.DateTimeFormat.DayNames[(int)DateTime.Now.DayOfWeek];
+            Dictionary<NöbertYer, List<Öğretmen>> model = new Dictionary<NöbertYer, List<Öğretmen>>();
+            
+            List<NöbertYer> GünlükNöbetYerleri = new List<NöbertYer>();
+            GünlükNöbetYerleri.AddRange(context.NöbertYers.Where(x => x.OkulId == Kullanıcı.OkulId));
+            foreach (NöbertYer nöbetYer in GünlükNöbetYerleri)
+            {
+                List<Öğretmen> OGünküNöbetçiler= new List<Öğretmen>();
+                OGünküNöbetçiler.AddRange(context.Öğretmens.Where(x => x.NöbetGün== Gün && x.Id == nöbetYer.Id));
+                model.Add(nöbetYer, OGünküNöbetçiler);
+            }
+
+            ViewBag.Modelk = model.Keys;
+            ViewBag.Model = model;
+
+
 
             return View();
+    
+        
         }
+    
+    
     }
 }
