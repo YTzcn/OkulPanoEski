@@ -63,12 +63,17 @@
                     </div>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
                     <div class="navbar-buttons mbr-section-btn">
                         <a class="btn btn-primary display-4">
                             <span id="jsTarih"></span>
                             <span id="jsZaman"> </span>
                         </a>
                     </div>
+                    <div class="navbar-buttons mbr-section-btn">
+                        <h5>Tenefüse Kalan : 12 Dakika</h5>
+                    </div>
+
 
                 </div>
             </div>
@@ -84,9 +89,6 @@
 
                 @foreach (var x in ViewBag.KayanList)
                 {
-
-
-
                     string ac = "active";
                     if (!a)
                     {
@@ -95,10 +97,6 @@
                     <div class="carousel-item slider-image item @ac ">
                         <div class="item-wrapper">
                             <img class="d-block w-100" src="@x">
-
-
-
-
                         </div>
                     </div>
                     a = false;
@@ -121,24 +119,13 @@
                                         </tr>
                                     </thead>
 
-                                    @foreach (NöbertYer x in ViewBag.Modelk)
+                                    @for (int i = 0; i < ViewBag.Nöbet.GetLength(0); i++)
                                     {
                                         <tr>
-                                            <td>@x.Ad</td>
-                                            @{
-                                                List<Öğretmen> ogretmenler = ViewBag.Model[x];
-                                            }
-                                            @foreach (Öğretmen öğretmen in ogretmenler)
-                                            {
-                                                <td>@öğretmen.Ad @öğretmen.Soyad</td>
-                                            }
-
+                                            <td>@ViewBag.Nöbet[i, 0]</td>
+                                            <td>@ViewBag.Nöbet[i, 1]</td>
                                         </tr>
                                     }
-
-
-
-
                                 </table>
                             </div>
                         </div>
